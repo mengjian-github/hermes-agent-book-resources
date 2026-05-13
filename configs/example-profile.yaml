@@ -1,0 +1,25 @@
+# 示例 Profile。复制前请按自己的系统路径和模型提供商调整。
+
+model:
+  provider: openai
+  name: gpt-5.5
+
+terminal:
+  backend: local
+  cwd: D:/work/demo-project
+
+tools:
+  allow:
+    - read_file
+    - search_files
+    - patch
+    - shell
+  deny:
+    - browser
+
+memory:
+  enabled: true
+
+agent:
+  personality: technical
+

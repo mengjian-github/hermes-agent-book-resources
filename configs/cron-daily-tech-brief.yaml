@@ -1,0 +1,13 @@
+# 定时任务示例。真实使用时请先手动运行一次验证输出质量。
+
+name: daily-tech-brief
+schedule: "0 9 * * 1-5"
+cwd: D:/work/news-brief
+delivery:
+  type: local
+  output: ./output/daily-tech-brief.md
+prompt: |
+  请生成一份 500 字以内的中文技术日报，包含 5 条重点动态和行动建议。
+  只使用当前目录 sources.txt 中列出的来源。
+  如果抓取失败，请说明失败来源和原因。
+
