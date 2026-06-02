@@ -1,0 +1,19 @@
+terminal:
+  backend: docker
+  cwd: /srv/hermes/workspaces
+
+gateway:
+  enabled: true
+  log_dir: /var/log/hermes
+
+toolsets:
+  default:
+    - file
+    - terminal
+    - memory
+    - skills
+
+security:
+  notes:
+    - "Do not put API keys in this file."
+    - "Mount production data read-only unless a task explicitly requires write access."

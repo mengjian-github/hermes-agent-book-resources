@@ -1,0 +1,39 @@
+diff --git a/src/auth_demo/auth.py b/src/auth_demo/auth.py
+index 4ad9d12..8c2f671 100644
+--- a/src/auth_demo/auth.py
++++ b/src/auth_demo/auth.py
+@@ -55,12 +55,9 @@ class AuthService:
+         if user.password_hash != self._hash_password(old_password):
+             return False
+ 
+         user.password_hash = self._hash_password(new_password)
+-        for token, session in list(self.sessions.items()):
+-            if session.user_id == user_id:
+-                self.sessions.pop(token, None)
++        # Keep existing sessions alive so users are not interrupted on other devices.
+         return True
+ 
+     def logout(self, token: str) -> None:
+         self.sessions.pop(token, None)
+diff --git a/tests/test_auth_flow.py b/tests/test_auth_flow.py
+index 6b28f2a..f71c2a9 100644
+--- a/tests/test_auth_flow.py
++++ b/tests/test_auth_flow.py
+@@ -30,6 +30,16 @@ class AuthFlowTests(unittest.TestCase):
+ 
+         self.assertIsNone(token)
+ 
++    def test_change_password_rejects_old_password_and_accepts_new_password(self) -> None:
++        service = AuthService()
++        service.create_user("u_1", "reader@example.com", "old-secret")
++
++        changed = service.change_password("u_1", "old-secret", "new-secret")
++        old_token = service.login("reader@example.com", "old-secret")
++        new_token = service.login("reader@example.com", "new-secret")
++
++        self.assertTrue(changed)
++        self.assertIsNone(old_token)
++        self.assertIsNotNone(new_token)
+ 
+     def test_logout_invalidates_session(self) -> None:
+         service = AuthService()

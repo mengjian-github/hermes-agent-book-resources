@@ -1,0 +1,13 @@
+name: daily-tech-brief
+schedule: "0 9 * * *"
+script: "./scripts/tech_daily.py"
+prompt: |
+  根据脚本输出的 JSON，生成 500 字以内中文技术日报。
+  输出包含：今日重点、值得关注、风险提示、原始链接。
+deliver:
+  - telegram
+  - local
+skills:
+  - daily-tech-brief
+workdir: "/absolute/path/to/examples/ch08-daily-tech-brief"
+profile: "work"

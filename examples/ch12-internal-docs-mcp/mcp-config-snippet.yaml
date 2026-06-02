@@ -1,0 +1,11 @@
+mcp_servers:
+  internal_docs:
+    url: "https://mcp.docs.example.com/mcp"
+    headers:
+      Authorization: "Bearer ${DOCS_API_TOKEN}"
+    tools:
+      include: [search_docs, read_doc]
+    prompts: true
+    resources: true
+    sampling:
+      enabled: false

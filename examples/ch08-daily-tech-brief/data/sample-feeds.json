@@ -1,0 +1,14 @@
+[
+  {
+    "source": "GitHub Blog",
+    "title": "Improving developer workflows with automation",
+    "url": "https://github.blog/example",
+    "summary": "A short sample item about workflow automation and developer productivity."
+  },
+  {
+    "source": "Hacker News",
+    "title": "A practical guide to agentic tooling",
+    "url": "https://news.ycombinator.com/item?id=0",
+    "summary": "A sample discussion about agent tools, verification, and safety boundaries."
+  }
+]

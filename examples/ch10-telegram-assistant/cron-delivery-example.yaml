@@ -1,0 +1,8 @@
+name: telegram-health-check
+schedule: "every 1 day"
+prompt: |
+  输出一条 100 字以内的中文健康检查消息，说明 Hermes Gateway 正常运行。
+deliver:
+  - telegram
+  - local
+profile: "work"

@@ -1,0 +1,17 @@
+[
+  {
+    "title": "Official documentation",
+    "url": "https://hermes-agent.nousresearch.com/docs",
+    "purpose": "确认安装、配置、工具集和功能边界"
+  },
+  {
+    "title": "GitHub repository",
+    "url": "https://github.com/NousResearch/hermes-agent",
+    "purpose": "确认安装脚本、README、Issue 和版本变化"
+  },
+  {
+    "title": "Toolsets Reference",
+    "url": "https://hermes-agent.nousresearch.com/docs/reference/toolsets-reference",
+    "purpose": "确认工具集分类和能力边界"
+  }
+]
