@@ -1,21 +1,11 @@
-# 第7.6节示例：记住项目偏好的个人助理
+# 第7章：跨会话记忆
 
-本目录对应书中 **7.6 实战：构建记住项目偏好的个人助理**。
+仓库 `memory/` 是材料，不会自动成为 Hermes 的持久记忆。先创建专用 book-lab Profile，用 `hermes profile show book-lab` 确认真实目录；本例记忆应合并到该目录的 `memories/USER.md` 与 `memories/MEMORY.md`。首次不存在可新建，已有内容先备份并逐条合并，不能直接覆盖个人记忆。
 
-示例目标：把用户偏好、项目事实和项目规则分别放到合适位置，避免每次新会话重复说明背景。
+USER.md 放长期偏好，MEMORY.md 放经确认的项目事实；短期待办留在会话或看板。`project/AGENTS.md` 是项目规则样本，放入实际练习项目根目录，从该项目启动 Hermes。
 
-## 文件说明
+先要求 Hermes 记住一条无敏感信息的偏好与事实，检查存放位置；退出后用同 Profile 开启**新会话**（不要 -c），使用 resume-prompt.md 的不显式读文件提示。核对它是否使用偏好且不编造未提供事实。随后可显式检查文件路径区分“记忆注入失败”和“内容没保存”。
 
-| 路径 | 用途 |
-| --- | --- |
-| `memory/USER.md` | 用户长期偏好示例 |
-| `memory/MEMORY.md` | 项目事实和历史决策示例 |
-| `project/AGENTS.md` | 项目规则和命令示例 |
-| `resume-prompt.md` | 新会话恢复上下文提示词 |
-| `expected-response.md` | 参考响应 |
+其他题：`hermes -p book-lab sessions list` 查看最近五条，确认 ID 后 `hermes -p book-lab sessions rename <ID> "项目回顾"`，再 list 确认；`hermes -p book-lab memory status` 检查外部提供商。轻量个人偏好不必为完成练习而引入外部服务。
 
-## 使用方式
-
-1. 阅读 7.6 后，对照本目录判断不同信息应写到哪里；
-2. 把稳定偏好写入 USER.md，把项目事实写入 MEMORY.md，把项目规则写入 AGENTS.md；
-3. 用 `resume-prompt.md` 测试新会话是否能正确恢复上下文。
+依据：[记忆](https://hermes-agent.nousresearch.com/docs/user-guide/features/memory)、[Profiles](https://hermes-agent.nousresearch.com/docs/user-guide/profiles)。

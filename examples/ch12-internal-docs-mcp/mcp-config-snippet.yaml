@@ -1,11 +1,13 @@
+# Merge into the active Profile config.yaml; replace BOTH absolute paths.
 mcp_servers:
-  internal_docs:
-    url: "https://mcp.docs.example.com/mcp"
-    headers:
-      Authorization: "Bearer ${DOCS_API_TOKEN}"
+  book-internal-docs:
+    command: "/absolute/path/to/repo/.venv/bin/python"
+    args:
+      - "/absolute/path/to/repo/examples/ch12-internal-docs-mcp/server.py"
+    enabled: true
     tools:
       include: [search_docs, read_doc]
-    prompts: true
-    resources: true
+      prompts: false
+      resources: false
     sampling:
       enabled: false

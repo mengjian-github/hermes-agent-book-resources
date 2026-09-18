@@ -18,6 +18,6 @@
 
 ## 使用方式
 
-1. 将 `skills/seo-keyword-research/` 复制到自己的 Hermes skills 目录；
+1. 用 `hermes profile show <name>` 确认目标 Profile，将仓库根的 `skills/seo-keyword-research/` 合并到该 Profile 的 `skills/seo-keyword-research/`；同名存在时先人工比较，不能直接覆盖；新会话检查发现和加载；
 2. 用 `input-brief.md` 发起一次调研任务；
 3. 对照 `expected-content-brief.md` 和 `quality-checklist.md` 检查输出。

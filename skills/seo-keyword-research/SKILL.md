@@ -1,3 +1,8 @@
+---
+name: seo-keyword-research
+description: Research keywords and search intent for a specified market using supplied or publicly accessible sources; do not invent search volumes or publish content.
+---
+
 # SEO Keyword Research
 
 Use this skill when the user asks to research keywords, search intent, competitor pages, or content gaps.

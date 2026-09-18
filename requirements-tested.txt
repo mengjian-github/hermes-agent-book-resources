@@ -1,0 +1,6 @@
+# 2026-09-18 Windows/Python 3.12.14 验证用直接依赖版本。
+# 非完整传递依赖锁；跨平台使用requirements-dev.txt的兼容范围。
+Flask==3.1.3
+mcp==1.30.0
+PyYAML==6.0.3
+reportlab==4.5.1

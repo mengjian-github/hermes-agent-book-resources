@@ -1,6 +1,10 @@
 __pycache__/
+*.py[cod]
+.venv/
 .env
+.env.*
+!.env.example
 *.log
 output/
 dist/
-
+.pytest_cache/

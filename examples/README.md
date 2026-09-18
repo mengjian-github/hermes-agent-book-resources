@@ -1,17 +1,15 @@
-# 示例项目索引
+# 章节实战索引
 
-本目录按书中实战章节组织。每个示例目录都包含 README、输入材料、提示词或配置，以及用于对照的参考输出。
+每个 README 写清运行目录、前提、产物和验收。题号入口为[57题答案](../exercises/answers.md)。
 
-| 章节 | 示例目录 | 对应能力 |
+| 书中位置 | 示例 | 内容 |
 | --- | --- | --- |
-| 3.6 | `ch03-code-review-auth/` | 用 Hermes 审查认证流程改动 |
-| 5.7 | `ch05-web-research/` | 串联 web、browser、file、terminal 完成研究报告 |
-| 6.7 | `ch06-seo-keyword-skill/` | 将 SEO 关键词调研沉淀为 Skill |
-| 7.6 | `ch07-personal-assistant-memory/` | 用 USER.md、MEMORY.md、AGENTS.md 保存偏好和项目事实 |
-| 8.5 | `ch08-daily-tech-brief/` | 用 script + Cron + Skill 生成每日技术日报 |
-| 9.6 | `ch09-multi-agent-todo-api/` | 拆分调研、实现、测试三条工作线 |
-| 10.5 | `ch10-telegram-assistant/` | 配置 Telegram Gateway、白名单、Home Channel 和 Cron 投递 |
-| 11 | `ch11-production-deploy/` | 生产部署、权限边界、日志和回滚检查 |
-| 12.7 | `ch12-internal-docs-mcp/` | 只读接入内部知识库并验证查询流程 |
-
-如果书中某个实战段落提到“配套 GitHub 仓库”，应能在本目录找到对应章节编号的资源。
+| 3.6 | [认证审查](ch03-code-review-auth/README.md) | 刻意保留缺陷和审查证据 |
+| 5.7 | [Web调研](ch05-web-research/README.md) | 资料、报告和来源检查 |
+| 6.7 | [SEO Skill](ch06-seo-keyword-skill/README.md) | 输入、参考结构与Skill |
+| 7.6 | [记忆](ch07-personal-assistant-memory/README.md) | 正确安装位置与新会话验证 |
+| 8.5 | [Cron日报](ch08-daily-tech-brief/README.md) | 脚本+数据安装、注册与调度；无需缺失Skill |
+| 9.6 | [Flask Todo](ch09-multi-agent-todo-api/README.md) | HTTP实现、测试、委派与Kanban设计 |
+| 10.5 | [Telegram](ch10-telegram-assistant/README.md) | 白名单、日报、触发、语音、Topic、PDF |
+| 11 | [部署](ch11-production-deploy/README.md) | 只读卷、输出卷、检查点和恢复 |
+| 12.7 | [知识库MCP](ch12-internal-docs-mcp/README.md) | 真实stdio服务、协议测试、Hermes接入 |

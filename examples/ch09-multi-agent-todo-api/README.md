@@ -1,21 +1,43 @@
-# 第9.6节示例：调研、实现、测试协作
+# 第9章：多 Agent 协作的 Flask Todo REST API
 
-本目录对应书中 **9.6 实战：调研、实现、测试协作**。
+本版在既有 TodoService 上补齐真实 HTTP 层，保留服务层测试。仅供本机教学：无认证、无数据库，重启清空数据，不可直接公开部署。
 
-示例用一个极小的待办事项服务模拟“现有 Flask 项目增加 REST API”的任务。为了降低复现成本，核心逻辑使用 Python 标准库；读者可以把同样任务拆给研究、实现、测试三个子代理。
+## 运行
 
-## 文件说明
+从仓库根目录执行；Windows 和 macOS/Linux 均可：
 
-| 路径 | 用途 |
-| --- | --- |
-| `src/todo_app/models.py` | 待办事项数据结构 |
-| `src/todo_app/service.py` | CRUD 服务逻辑 |
-| `tests/test_todo_service.py` | 测试子代理应补齐的测试 |
-| `delegation-plan.md` | 三个子代理的任务边界 |
-| `expected-summary.md` | 合并后的参考总结 |
-
-## 运行测试
-
-```bash
-python -m unittest discover -s tests
+```sh
+python -m pip install -r examples/ch09-multi-agent-todo-api/requirements.txt
+python -m unittest discover -s examples/ch09-multi-agent-todo-api/tests -v
+python examples/ch09-multi-agent-todo-api/run.py
 ```
+
+服务绑定 `127.0.0.1:5050`，不启用调试器。浏览器打开 `http://127.0.0.1:5050/todos` 初始得到 `[]`，Ctrl+C 停止。
+
+PowerShell 操作示例：
+
+```powershell
+Invoke-RestMethod http://127.0.0.1:5050/todos -Method Post -ContentType application/json -Body '{"title":"补充测试"}'
+Invoke-RestMethod http://127.0.0.1:5050/todos/1 -Method Patch -ContentType application/json -Body '{"completed":true}'
+Invoke-RestMethod http://127.0.0.1:5050/todos/1 -Method Delete
+```
+
+macOS/Linux 可用 curl，正文与 Content-Type 相同。自动 HTTP 测试通过 Flask test_client 发请求，无需开放端口。
+
+## 接口约定
+
+| 方法/路径 | 输入 | 成功 | 失败 |
+| --- | --- | --- | --- |
+| GET /todos | 无 | 200，数组 | — |
+| POST /todos | 仅 title，非空字符串 | 201，对象及 Location | 400/415 |
+| GET /todos/{id} | 无 | 200，对象 | 404 |
+| PATCH /todos/{id} | title 和/或 completed 布尔值 | 200，对象 | 400/404/415 |
+| DELETE /todos/{id} | 无 | 204，无正文 | 404 |
+
+ID 为正整数。未知字段、空 PATCH、空白标题、字符串形式的布尔值均拒绝。无效 PATCH 不可部分修改已有数据。不同 app 实例的内存互不共享。
+
+## 委派与验收
+
+按[委派计划](delegation-plan.md)先约定接口，再分文件协作；本项目不是 Kanban 实现，Kanban 与 Webhook 练习见[独立操作手册](kanban-webhook.md)。完成后提交测试输出、接口样例和文件变更清单，不能只展示子 Agent 的文字总结。
+
+参考：[Flask 测试](https://flask.palletsprojects.com/en/stable/testing/)、[Hermes 委派](https://hermes-agent.nousresearch.com/docs/user-guide/features/delegation)。

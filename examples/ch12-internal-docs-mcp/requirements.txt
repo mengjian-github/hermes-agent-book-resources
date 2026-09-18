@@ -1,0 +1,2 @@
+# Explicitly use the maintained v1 SDK API.
+mcp>=1.12,<2

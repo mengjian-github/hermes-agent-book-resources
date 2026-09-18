@@ -1,13 +1,7 @@
-name: daily-tech-brief
+# 教学参数记录，不是可导入的 config.yaml。
+# 执行 README 中的 CLI 命令注册；脚本必须先安装到目标 Profile。
+name: book-daily-tech-brief
 schedule: "0 9 * * *"
-script: "./scripts/tech_daily.py"
-prompt: |
-  根据脚本输出的 JSON，生成 500 字以内中文技术日报。
-  输出包含：今日重点、值得关注、风险提示、原始链接。
-deliver:
-  - telegram
-  - local
-skills:
-  - daily-tech-brief
-workdir: "/absolute/path/to/examples/ch08-daily-tech-brief"
-profile: "work"
+script: "book-daily-tech-brief/scripts/tech_daily.py"
+deliver: local
+prompt: "根据脚本JSON生成三点摘要。必须标注离线样例，不要把占位URL说成真实新闻。"

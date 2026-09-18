@@ -1,3 +1,8 @@
+---
+name: repo-review
+description: Review local code changes or a pull request when explicitly requested; report evidence-backed defects without modifying code unless separately authorized.
+---
+
 # Repository Review
 
 Use this skill when the user asks to review code changes, pull requests, or recent commits.

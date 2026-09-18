@@ -1,25 +1,8 @@
-# 示例 Profile。复制前请按自己的系统路径和模型提供商调整。
-
-model:
-  provider: openai
-  name: gpt-5.5
-
+# 配置片段，不是完整 Profile；合并同名键，不要整体覆盖已有配置。
+# 用 hermes -p work model 生成实际可用的 model.provider / model.default。
+# CLI 通常使用启动目录；cwd 不构成文件访问安全边界。
 terminal:
   backend: local
-  cwd: D:/work/demo-project
-
-tools:
-  allow:
-    - read_file
-    - search_files
-    - patch
-    - shell
-  deny:
-    - browser
-
-memory:
-  enabled: true
-
-agent:
-  personality: technical
-
+platform_toolsets:
+  cli:
+    - safe

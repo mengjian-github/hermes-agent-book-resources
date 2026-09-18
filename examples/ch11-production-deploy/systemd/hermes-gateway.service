@@ -1,18 +1,21 @@
+# Linux systemd 模板：替换 User、Group、路径后再安装；不在 Windows 执行。
 [Unit]
-Description=Hermes Gateway
+Description=Hermes book gateway
 After=network-online.target
 Wants=network-online.target
 
 [Service]
 Type=simple
 User=hermes
-WorkingDirectory=/opt/hermes
-EnvironmentFile=/etc/hermes/hermes.env
-ExecStart=/usr/local/bin/hermes gateway
+Group=hermes
+Environment=HERMES_HOME=/srv/hermes/profile
+WorkingDirectory=/srv/hermes
+# 替换为 command -v hermes 查得的服务账户可执行文件绝对路径。
+ExecStart=/opt/hermes/.venv/bin/hermes gateway run
 Restart=on-failure
 RestartSec=5
+UMask=0077
 NoNewPrivileges=true
-PrivateTmp=true
 
 [Install]
 WantedBy=multi-user.target

@@ -1,19 +1,16 @@
+# Linux Docker 教学片段；先创建宿主目录并授予服务账户所需权限。
+# 与目标 Profile 配置合并，不要覆盖模型与消息平台设置。
 terminal:
   backend: docker
-  cwd: /srv/hermes/workspaces
-
-gateway:
-  enabled: true
-  log_dir: /var/log/hermes
-
-toolsets:
-  default:
-    - file
+  cwd: /workspace
+  docker_volumes:
+    - "/srv/hermes/input:/data:ro"
+    - "/srv/hermes/output:/output"
+platform_toolsets:
+  telegram:
     - terminal
-    - memory
-    - skills
-
-security:
-  notes:
-    - "Do not put API keys in this file."
-    - "Mount production data read-only unless a task explicitly requires write access."
+    - file
+checkpoints:
+  enabled: true
+# 不挂载 Docker socket、宿主根目录或 .env。
+# Telegram 发送 /output 下文件时，MEDIA 必须写宿主的 /srv/hermes/output/...。

@@ -1,8 +1,6 @@
-name: telegram-health-check
-schedule: "every 1 day"
-prompt: |
-  输出一条 100 字以内的中文健康检查消息，说明 Hermes Gateway 正常运行。
-deliver:
-  - telegram
-  - local
-profile: "work"
+# 参数记录，不是可导入配置；先在 Telegram 执行 /sethome。
+# 注册命令见 README。
+name: book-telegram-check
+schedule: "in 30m"
+deliver: telegram
+prompt: "发送一句：配套练习投递测试成功。"

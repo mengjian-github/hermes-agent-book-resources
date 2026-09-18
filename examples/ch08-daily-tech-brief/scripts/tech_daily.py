@@ -1,27 +1,25 @@
-from __future__ import annotations
-
+"""Offline fixture input for Hermes Cron. stdout contains JSON only."""
+import argparse
 import json
-import sys
-from datetime import date
 from pathlib import Path
 
 
-if hasattr(sys.stdout, "reconfigure"):
-    sys.stdout.reconfigure(encoding="utf-8")
+def load_brief(path):
+    items = json.loads(Path(path).read_text(encoding="utf-8"))
+    if not isinstance(items, list) or not all(
+        isinstance(item, dict) and all(isinstance(item.get(k), str) and item[k].strip()
+        for k in ("source", "title", "url", "summary")) for item in items
+    ):
+        raise ValueError("Expected a list of source/title/url/summary objects")
+    return {"mode": "offline-fixture", "not_live_news": True, "items": items}
 
-ROOT = Path(__file__).resolve().parents[1]
-DATA = ROOT / "data" / "sample-feeds.json"
 
-
-def main() -> None:
-    items = json.loads(DATA.read_text(encoding="utf-8"))
-    output = {
-        "date": date.today().isoformat(),
-        "sources": sorted({item["source"] for item in items}),
-        "items": items,
-        "instruction": "Summarize these items into a Chinese daily tech brief within 500 words.",
-    }
-    print(json.dumps(output, ensure_ascii=False, indent=2))
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--data", type=Path,
+                        default=Path(__file__).resolve().parents[1] / "data" / "sample-feeds.json")
+    args = parser.parse_args()
+    print(json.dumps(load_brief(args.data), ensure_ascii=True))
 
 
 if __name__ == "__main__":
